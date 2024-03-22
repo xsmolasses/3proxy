@@ -20,7 +20,8 @@ jobs:
         SET "LIB=C:\Program Files\OpenSSL\lib;%LIB%"
         REM SET "LIB=C:\Program Files\OpenSSL\lib\VC;%LIB%"
         SET "LIB=C:\Program Files\OpenSSL\lib\VC\static;%LIB%"
-        NMAKE /F Makefile.msvc64
+        openssl version
+        REM NMAKE /F Makefile.msvc64
       shell: CMD
 
     - uses: actions/upload-artifact@v3
