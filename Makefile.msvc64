@@ -27,6 +27,7 @@ COMPFILES = *.pch *.idb
 REMOVECOMMAND = del 2>NUL >NUL
 TYPECOMMAND = type
 COMPATLIBS =
+MAKEFILE = Makefile.msvc64
 VERFILE = 3proxy.res $(VERFILE)
 VERSIONDEP = 3proxy.res $(VERSIONDEP)
 PLUGINS = utf8tocp1251 WindowsAuthentication TrafficPlugin StringsPlugin PCREPlugin FilePlugin SSLPlugin
