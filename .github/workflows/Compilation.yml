@@ -15,10 +15,10 @@ jobs:
     - name: compile 3proxy with Visual C++
       run: |
         CALL "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
-        ECHO x86
-        DIR /B "C:\Program Files (x86)"
-        ECHO x64
-        DIR /B "C:\Program Files"
+        ECHO x86:
+        DIR /B /S "C:\Program Files (x86)"
+        ECHO x64:
+        DIR /B /S "C:\Program Files"
         MKDIR "build"
         CHDIR "build"
         nmake /f Makefile.msvc64
