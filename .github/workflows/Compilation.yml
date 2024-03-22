@@ -15,13 +15,12 @@ jobs:
     - name: compile 3proxy with Visual C++
       run: |
         CALL "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
-        ECHO x86:
-        DIR /B /S "C:\Program Files (x86)"
-        ECHO x64:
-        DIR /B /S "C:\Program Files"
         MKDIR "build"
         CHDIR "build"
-        nmake /f Makefile.msvc64
+        ECHO x86:
+        DIR /B /S "C:\Program Files (x86)" > dirx86.txt
+        ECHO x64:
+        DIR /B /S "C:\Program Files" > dirx64.txt
       shell: cmd
 
     - uses: actions/upload-artifact@v3
