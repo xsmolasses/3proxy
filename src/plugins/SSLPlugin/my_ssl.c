@@ -117,12 +117,11 @@ SSL_CERT ssl_copy_cert(SSL_CERT cert, SSL_CONFIG *config)
 		return NULL;
 	}
 
-	if(config->certcache){
-	    bin2hex(hash_sha1, 20, hash_name_sha1, sizeof(hash_name_sha1));
-	    sprintf(cache_name, "%s%s.pem", config->certcache, hash_name_sha1);
-	    /* check if certificate is already cached */
-	    fcache = BIO_new_file(cache_name, "rb");
-	    if ( fcache != NULL ) {
+	bin2hex(hash_sha1, 20, hash_name_sha1, sizeof(hash_name_sha1));
+	sprintf(cache_name, "%s%s.pem", config->certcache, hash_name_sha1);
+	/* check if certificate is already cached */
+	fcache = BIO_new_file(cache_name, "rb");
+	if ( fcache != NULL ) {
 #ifndef _WIN32
 		flock(BIO_get_fd(fcache, NULL), LOCK_SH);
 #endif
@@ -134,8 +133,8 @@ SSL_CERT ssl_copy_cert(SSL_CERT cert, SSL_CONFIG *config)
 		if ( dst_cert != NULL ){
 			return dst_cert;
 		}
-	    }
 	}
+
 	/* proceed if certificate is not cached */
 	dst_cert = X509_dup(src_cert);
 	if ( dst_cert == NULL ) {
@@ -166,9 +165,8 @@ SSL_CERT ssl_copy_cert(SSL_CERT cert, SSL_CONFIG *config)
 
 	/* write to cache */
 
-	if(config->certcache){
-	    fcache = BIO_new_file(cache_name, "wb");
-	    if ( fcache != NULL ) {
+	fcache = BIO_new_file(cache_name, "wb");
+	if ( fcache != NULL ) {
 #ifndef _WIN32
 		flock(BIO_get_fd(fcache, NULL), LOCK_EX);
 #endif
@@ -177,7 +175,6 @@ SSL_CERT ssl_copy_cert(SSL_CERT cert, SSL_CONFIG *config)
 		flock(BIO_get_fd(fcache, NULL), LOCK_UN);
 #endif
 		BIO_free(fcache);
-	    }
 	}
 	return dst_cert;
 }
@@ -427,4 +424,3 @@ void ssl_init()
 	    bio_err=BIO_new_fp(stderr,BIO_NOCLOSE);
 	}
 }
-
