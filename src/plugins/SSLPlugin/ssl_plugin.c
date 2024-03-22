@@ -459,7 +459,8 @@ static void* ssl_filter_open(void * idata, struct srvparam * srv){
 
 static FILTER_ACTION ssl_filter_client(void *fo, struct clientparam * param, void** fc){
 	struct SSLstate *ssls;
-
+	unsigned long ul;
+	
 	ssls = (struct SSLstate *) malloc(sizeof(struct SSLstate));
 	memset(ssls, 0, sizeof(struct SSLstate));
 	ssls->config = fo;
