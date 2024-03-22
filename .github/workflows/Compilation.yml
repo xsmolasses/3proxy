@@ -18,6 +18,8 @@ jobs:
         SET "PATH=C:\Program Files\OpenSSL\bin;%PATH%"
         SET "INCLUDE=C:\Program Files\OpenSSL\include;%INCLUDE%"
         SET "LIB=C:\Program Files\OpenSSL\lib;%LIB%"
+        REM SET "LIB=C:\Program Files\OpenSSL\lib\VC;%LIB%"
+        SET "LIB=C:\Program Files\OpenSSL\lib\VC\static;%LIB%"
         NMAKE /F Makefile.msvc64
       shell: CMD
 
