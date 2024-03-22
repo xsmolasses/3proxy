@@ -12,11 +12,13 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: compile 3proxy with Visual C++
+    - name: compile 3proxy (x64) with Visual C++
       run: |
-        TYPE "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
         CALL "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
-        nmake /f Makefile.msvc64
+        SET "PATH=C:\Program Files\OpenSSL\bin;%PATH%"
+        SET "INCLUDE=C:\Program Files\OpenSSL\include;%INCLUDE%"
+        SET "LIB=C:\Program Files\OpenSSL\lib;%LIB%"
+        NMAKE /F Makefile.msvc64
       shell: CMD
 
     - uses: actions/upload-artifact@v3
